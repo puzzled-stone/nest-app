@@ -1,4 +1,4 @@
-import { IsEnum, IsNumber } from 'class-validator';
+import { IsEnum, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class PageDto {
   // 页码
@@ -10,6 +10,7 @@ export class PageDto {
   // 排序字段
   sort?: string;
   // 排序方式
+  @IsOptional()
   @IsEnum(['ASC', 'DESC'], { message: '排序方式必须为ASC或DESC' })
   order?: 'ASC' | 'DESC';
   // 搜索关键字

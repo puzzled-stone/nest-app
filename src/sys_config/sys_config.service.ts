@@ -14,10 +14,10 @@ export class SysConfigService {
   ) {}
 
   async page(pageDto: PageDto): Promise<PageRetDto<SysConfig>> {
-    const { page, size, sort, order, keyword } = pageDto;
+    const { page, size, keyword } = pageDto;
     const queryBuilder = this.sysConfigRepository
       .createQueryBuilder('sys_config')
-      .orderBy(sort, order);
+      .orderBy();
     if (keyword) {
       queryBuilder
         .where('sys_config.conf_key like :keyword', {
