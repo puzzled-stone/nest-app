@@ -5,25 +5,25 @@ import { SysConfigService } from './sys_config.service';
 
 @Controller('api/sys-config')
 export class SysConfigController {
-  constructor(private sysConfigService: SysConfigService) {}
+    constructor(private sysConfigService: SysConfigService) {}
 
-  @Post('page')
-  page(@Body() pageDto: PageDto) {
-    return this.sysConfigService.page(pageDto);
-  }
+    @Post('page')
+    page(@Body() pageDto: PageDto) {
+        return this.sysConfigService.page(pageDto);
+    }
 
-  @Post('create')
-  create(@Body() createSysConfigDto: CreateSysConfigDto) {
-    return this.sysConfigService.create(createSysConfigDto);
-  }
+    @Post('create')
+    create(@Body() createSysConfigDto: CreateSysConfigDto) {
+        return this.sysConfigService.create(createSysConfigDto);
+    }
 
-  @Get()
-  findAll() {
-    return this.sysConfigService.findAll();
-  }
+    @Get()
+    findAll() {
+        return this.sysConfigService.findAll();
+    }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.sysConfigService.findOne(+id);
-  }
+    @Get(':id')
+    findOne(@Param('id') id: string) {
+        return this.sysConfigService.findOne(+id);
+    }
 }
