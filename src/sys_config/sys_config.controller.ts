@@ -22,8 +22,14 @@ export class SysConfigController {
         return this.sysConfigService.findAll();
     }
 
+    /**
+     * 这里id不是number类型会转为null,然后查询数据库
+     * 这不搞死数据库么，需要个全局处理方法
+     * @param id id number
+     * @returns sys_config
+     */
     @Get(':id')
-    findOne(@Param('id') id: string) {
+    findOne(@Param('id') id: number) {
         return this.sysConfigService.findOne(+id);
     }
 }

@@ -4,6 +4,7 @@ import { DateformatInterceptor } from './interceptors/dateformat.interceptor';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { logger } from './logger.middleware';
+import { ParamValidationPipe } from './pipe/custom-validation.pipe';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -18,6 +19,7 @@ async function bootstrap() {
     SwaggerModule.setup('api', app, document);
     // Global
     app.useGlobalPipes(
+        new ParamValidationPipe(),
         new ValidationPipe({
             transform: true,
         }),

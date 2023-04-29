@@ -1,4 +1,4 @@
-import { ArgumentsHost, BadRequestException, Catch, ExceptionFilter, HttpException, HttpStatus } from '@nestjs/common';
+import { ArgumentsHost, BadRequestException, Catch, ExceptionFilter, HttpStatus } from '@nestjs/common';
 import { log } from 'console';
 import { ResponseCode } from 'src/common/constant/response-code.enum';
 
@@ -11,8 +11,8 @@ export class CustomExceptionFilter implements ExceptionFilter {
         log('exception:', exception);
         // exception.message = exception.getResponse()['message'];
         response.status(HttpStatus.OK).json({
-            code: ResponseCode.SUCCESS,
-            msg: exception.getResponse()['message'][0],
+            code: ResponseCode.FAIL,
+            msg: exception.getResponse()['message'],
             timestamp: new Date(),
             path: request.url,
         });
