@@ -1,4 +1,4 @@
-import { Controller, Get, Header, Param, Query, Redirect, Session } from '@nestjs/common';
+import { Controller, Get, Param, Query, Redirect, Session } from '@nestjs/common';
 import { AppService } from './app.service';
 import { log } from 'console';
 

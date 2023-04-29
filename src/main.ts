@@ -3,7 +3,6 @@ import { AppModule } from './app.module';
 import { DateformatInterceptor } from './interceptors/dateformat.interceptor';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { SysConfigMiddleware } from './sys_config/sys_config.middleware';
 import { logger } from './logger.middleware';
 
 async function bootstrap() {
