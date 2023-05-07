@@ -1,13 +1,16 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { SysConfigModule } from './sys_config/sys_config.module';
-import { DatabaseModule } from './database/database.module';
-import { logger } from './logger.middleware';
 import { CustomExceptionFilter } from './filter/custom-exception.filter';
+import { AuthGuard } from './guard/auth.gurad';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
+import { DataSource } from 'typeorm';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { dbConfig } from './database/db.config';
 
 @Module({
-    imports: [DatabaseModule, SysConfigModule],
+    imports: [TypeOrmModule.forRoot(dbConfig), AuthModule, UsersModule],
     // 放在这里的 controller 会被自动注册到 app 中
     controllers: [AppController],
     providers: [
@@ -17,10 +20,12 @@ import { CustomExceptionFilter } from './filter/custom-exception.filter';
             provide: 'APP_FILTER',
             useClass: CustomExceptionFilter,
         },
+        {
+            provide: 'APP_GUARD',
+            useClass: AuthGuard,
+        },
     ],
 })
-export class AppModule implements NestModule {
-    configure(consumer: MiddlewareConsumer) {
-        consumer.apply(logger).forRoutes('api/sys-config');
-    }
+export class AppModule {
+    constructor(private dataSource: DataSource) {}
 }

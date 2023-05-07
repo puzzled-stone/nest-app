@@ -1,6 +1,7 @@
 import { Controller, Get, Param, Query, Redirect, Session } from '@nestjs/common';
 import { AppService } from './app.service';
 import { log } from 'console';
+import { Roles } from './decorator/roles.decorator';
 
 @Controller()
 export class AppController {
@@ -16,6 +17,7 @@ export class AppController {
     }
 
     @Get('hello')
+    @Roles('admin')
     getHello2(): string {
         return 'redirect';
     }

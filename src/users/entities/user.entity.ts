@@ -1,22 +1,25 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
-export class SysConfig {
+@Entity('base_user')
+export class User {
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
-    section: string;
+    username: string;
 
     @Column()
-    confKey: string;
+    password: string;
 
     @Column()
-    confValue: string;
+    email: string;
 
     @Column()
-    confDesc: string;
+    phone: string;
 
     @Column()
-    ts: Date;
+    create_time: Date;
+
+    @Column()
+    update_time: Date;
 }
