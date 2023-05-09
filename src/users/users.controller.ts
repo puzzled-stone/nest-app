@@ -24,7 +24,7 @@ export class UsersController {
 
     @Get(':id')
     async findOne(@Param('id') id: string) {
-        return RetDto.success(await this.usersService.findOne(+id));
+        return RetDto.success(await this.usersService.findById(+id));
     }
 
     @Patch()

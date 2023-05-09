@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CustomExceptionFilter } from './filter/custom-exception.filter';
+import { CustomExceptionFilter, UnauthorizedExceptionFilter } from './filter/custom-exception.filter';
 import { AuthGuard } from './guard/auth.gurad';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
@@ -19,6 +19,11 @@ import { dbConfig } from './database/db.config';
             // provide名称固定的
             provide: 'APP_FILTER',
             useClass: CustomExceptionFilter,
+        },
+        {
+            // provide名称固定的
+            provide: 'APP_FILTER',
+            useClass: UnauthorizedExceptionFilter,
         },
         {
             provide: 'APP_GUARD',

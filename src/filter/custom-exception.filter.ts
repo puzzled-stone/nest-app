@@ -1,10 +1,10 @@
-import { ArgumentsHost, BadRequestException, Catch, ExceptionFilter, HttpStatus } from '@nestjs/common';
+import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus } from '@nestjs/common';
 import { log } from 'console';
 import { ResponseCode } from 'src/common/constant/response-code.enum';
 
-@Catch(BadRequestException)
+@Catch(HttpException)
 export class CustomExceptionFilter implements ExceptionFilter {
-    catch(exception: BadRequestException, host: ArgumentsHost) {
+    catch(exception: HttpException, host: ArgumentsHost) {
         const ctx = host.switchToHttp();
         const response = ctx.getResponse();
         const request = ctx.getRequest();

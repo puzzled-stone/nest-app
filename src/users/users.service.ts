@@ -23,8 +23,12 @@ export class UsersService {
         return this.userRepo.find();
     }
 
-    findOne(id: number) {
+    findById(id: number) {
         return this.userRepo.findOneBy({ id: id });
+    }
+
+    findByUsername(username: string) {
+        return this.userRepo.findOne({ where: { username: username } });
     }
 
     update(updateUserDto: UpdateUserDto) {
