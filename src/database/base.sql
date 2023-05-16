@@ -28,3 +28,16 @@ create table if not exists base_user_role(
     update_time datetime default now() on update now(),
     unique (user_id, role_id)
 );
+
+-- api log table
+create table if not exists base_api_log(
+    id int primary key auto_increment,
+    user_id int not null,
+    api varchar(255) not null,
+    method varchar(32) not null,
+    request_body text,
+    request_query text,
+    response_body text,
+    create_time datetime default now(),
+    update_time datetime default now() on update now()
+);

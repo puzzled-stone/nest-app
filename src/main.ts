@@ -1,11 +1,10 @@
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { DateformatInterceptor } from './interceptors/dateformat.interceptor';
-import { ValidationPipe } from '@nestjs/common';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { logger } from './logger.middleware';
 import { ParamValidationPipe } from './pipe/custom-validation.pipe';
-import { AuthGuard } from './guard/auth.gurad';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
