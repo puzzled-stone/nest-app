@@ -38,6 +38,7 @@ create table if not exists base_api_log(
     request_body text,
     request_query text,
     response_body text,
+    spend_time int,
     create_time datetime default now(),
     update_time datetime default now() on update now()
 );

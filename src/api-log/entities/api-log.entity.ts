@@ -24,6 +24,9 @@ export class ApiLog {
     response_body: string;
 
     @Column()
+    spend_time: number;
+
+    @Column()
     create_time: Date;
 
     @Column()

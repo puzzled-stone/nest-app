@@ -5,4 +5,5 @@ export class CreateApiLogDto {
     request_body: string;
     request_query: string;
     response_body: string;
+    spend_time: number;
 }

@@ -2,7 +2,6 @@ import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nes
 import { Observable, tap } from 'rxjs';
 import { ApiLogService } from 'src/api-log/api-log.service';
 import { CreateApiLogDto } from 'src/api-log/dto/create-api-log.dto';
-import { ApiLog } from 'src/api-log/entities/api-log.entity';
 
 @Injectable()
 export class ApiLogInterceptor implements NestInterceptor {
@@ -18,12 +17,13 @@ export class ApiLogInterceptor implements NestInterceptor {
             request_body: JSON.stringify(req.body),
             request_query: JSON.stringify(req.query),
             response_body: JSON.stringify(res.body),
+            spend_time: Date.now(),
             user_id: 0,
         };
-
         return next.handle().pipe(
             tap((data) => {
                 apiLog.response_body = JSON.stringify(data);
+                apiLog.spend_time = Date.now() - apiLog.spend_time;
                 this.apiLogService.create(apiLog);
             }),
         );
