@@ -9,6 +9,7 @@ import { dbConfig } from './database/db.config';
 import { CustomExceptionFilter } from './filter/custom-exception.filter';
 import { ApiLogInterceptor } from './interceptors/api-log.interceptor';
 import { UsersModule } from './users/users.module';
+import { JwtAuthGuard } from './auth/jwt/jwt-auth.guard';
 
 @Module({
     imports: [TypeOrmModule.forRoot(dbConfig), AuthModule, UsersModule, ApiLogModule],
@@ -25,10 +26,10 @@ import { UsersModule } from './users/users.module';
             provide: 'APP_FILTER',
             useClass: CustomExceptionFilter,
         },
-        // {
-        //     provide: 'APP_GUARD',
-        //     useClass: AuthGuard,
-        // },
+        {
+            provide: 'APP_GUARD',
+            useClass: JwtAuthGuard,
+        },
     ],
 })
 export class AppModule {
