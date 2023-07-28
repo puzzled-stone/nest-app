@@ -2,6 +2,7 @@ import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { jwtConstants } from 'src/auth/constants';
+import { Logger } from '@nestjs/common';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -24,7 +25,8 @@ export class AuthGuard implements CanActivate {
             const playload = await this.jwtService.verifyAsync(token, { secret: jwtConstants.secret });
             request['user'] = playload;
         } catch {
-            throw new UnauthorizedException();
+            Logger.error('token验证失败');
+            return false;
         }
         return true;
     }

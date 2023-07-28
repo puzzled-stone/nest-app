@@ -10,9 +10,10 @@ import { CustomExceptionFilter } from './filter/custom-exception.filter';
 import { ApiLogInterceptor } from './interceptors/api-log.interceptor';
 import { UsersModule } from './users/users.module';
 import { JwtAuthGuard } from './auth/jwt/jwt-auth.guard';
+import { MenuModule } from './menu/menu.module';
 
 @Module({
-    imports: [TypeOrmModule.forRoot(dbConfig), AuthModule, UsersModule, ApiLogModule],
+    imports: [TypeOrmModule.forRoot(dbConfig), AuthModule, UsersModule, ApiLogModule, MenuModule],
     // 放在这里的 controller 会被自动注册到 app 中
     controllers: [AppController],
     providers: [

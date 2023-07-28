@@ -3,6 +3,7 @@ create table if not exists base_user(
     id int primary key auto_increment,
     username varchar(255) not null,
     password varchar(255) not null,
+    avatar varchar(128),
     email varchar(255),
     phone varchar(32),
     create_time datetime default now(),
@@ -42,3 +43,18 @@ create table if not exists base_api_log(
     create_time datetime default now(),
     update_time datetime default now() on update now()
 );
+
+-- menu table
+create table if not exists base_menu(
+    id int primary key auto_increment,
+    name varchar(255) not null,
+    parent_id int,
+    path varchar(255) not null,
+    icon varchar(255),
+    sort int not null default 0,
+    create_time datetime default now(),
+    update_time datetime default now() on update now(),
+    unique (path)
+);
+
+replace into base_user(username, password) value ('root', md5(now()));
